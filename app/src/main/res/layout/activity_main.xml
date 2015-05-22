@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/flexible_space_image_height"
             android:scaleType="centerCrop"
-            android:src="@drawable/example" />
+            android:src="@drawable/example2" />
     </FrameLayout>
 
     <View
@@ -65,13 +65,23 @@
             <TextView
                 android:id="@+id/title"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:ellipsize="end"
-                android:gravity="center_vertical"
                 android:maxLines="1"
+                android:paddingTop="@dimen/margin_standard"
                 android:paddingLeft="@dimen/margin_standard"
                 android:textColor="@android:color/white"
-                android:textSize="20sp" />
+                android:textSize="24sp" />
+
+            <TextView
+                android:id="@+id/subTitle"
+                android:text="Sub Title"
+                android:paddingTop="@dimen/margin_standard"
+                android:paddingLeft="@dimen/margin_standard"
+                android:textColor="@android:color/white"
+                android:textSize="16sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </FrameLayout>
 </FrameLayout>

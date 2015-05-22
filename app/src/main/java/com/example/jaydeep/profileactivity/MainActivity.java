@@ -81,7 +81,7 @@ public class MainActivity extends ActionBarActivity implements ObservableScrollV
         });
 
 
-        Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.example);
+        Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.example2);
         Palette.from(bmp).maximumColorCount(24).generate(new Palette.PaletteAsyncListener() {
             @Override
             public void onGenerated(Palette palette) {
