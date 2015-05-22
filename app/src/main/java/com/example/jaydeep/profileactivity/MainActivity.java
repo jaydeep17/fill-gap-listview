@@ -1,8 +1,11 @@
 package com.example.jaydeep.profileactivity;
 
 import android.content.res.TypedArray;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.support.v7.graphics.Palette;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
@@ -24,6 +27,8 @@ import java.util.ArrayList;
 
 
 public class MainActivity extends ActionBarActivity implements ObservableScrollViewCallbacks {
+
+    private String tag = MainActivity.class.getSimpleName();
 
     private View mHeader;
     private int mFlexibleSpaceImageHeight;
@@ -61,7 +66,10 @@ public class MainActivity extends ActionBarActivity implements ObservableScrollV
         mHeaderBackground = findViewById(R.id.header_background);
         mListBackgroundView = findViewById(R.id.list_background);
 
-        ((TextView) findViewById(R.id.title)).setText("Pseudo toolbar");
+
+        final TextView title = ((TextView) findViewById(R.id.title));
+        title.setText("Pseudo toolbar");
+
         final ObservableListView scrollable = createScrollable();
 
         ScrollUtils.addOnGlobalLayoutListener(scrollable, new Runnable() {
@@ -69,6 +77,22 @@ public class MainActivity extends ActionBarActivity implements ObservableScrollV
             public void run() {
                 mReady = true;
                 updateViews(scrollable.getCurrentScrollY(), false);
+            }
+        });
+
+
+        Bitmap bmp = BitmapFactory.decodeResource(getResources(), R.drawable.example);
+        Palette.from(bmp).maximumColorCount(24).generate(new Palette.PaletteAsyncListener() {
+            @Override
+            public void onGenerated(Palette palette) {
+                int vibrantColor = getResources().getColor(R.color.primary);
+                int vibrantDarkColor = getResources().getColor(R.color.primaryDark);
+
+                vibrantColor = palette.getVibrantColor(vibrantColor);
+                vibrantDarkColor = palette.getDarkVibrantColor(vibrantDarkColor);
+
+                mHeaderBackground.setBackgroundColor(vibrantColor);
+                AndroidUtils.setStatusBarColor(MainActivity.this, vibrantDarkColor);
             }
         });
     }
